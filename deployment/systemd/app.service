@@ -1,0 +1,17 @@
+[Unit]
+Description=Aplikasi Monolitik Stateful (Pure Python)
+After=network.target
+
+[Service]
+Type=simple
+User=appuser
+WorkingDirectory=/home/appuser/app/src
+ExecStart=/usr/bin/python3 /home/appuser/app/src/app.py
+Restart=always
+RestartSec=3
+Environment=PORT=8000
+StandardOutput=append:/home/appuser/app/logs/app.log
+StandardError=append:/home/appuser/app/logs/app_error.log
+
+[Install]
+WantedBy=multi-user.target

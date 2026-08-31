@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aplikasi Monolitik Stateful - Kumpulan Puisi</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    <header class="navbar">
+        <div class="container navbar-inner">
+            <span class="brand">📖 Puisi Monolitik</span>
+            <nav class="nav-links" id="navLinks"></nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="hero">
+            <h1>Aplikasi Monolitik Stateful</h1>
+            <p class="mata-kuliah">PACS262521 - Pengembangan Perangkat Lunak Scalable</p>
+            <p class="penulis">Rayhan Haldi Hermawan - 24/545406/PA/23176</p>
+            <p class="deskripsi">
+                Aplikasi backend murni (tanpa framework) dengan pola
+                <strong>Single-Path Routing</strong> dan manajemen
+                <strong>server-side session</strong> (stateful). Data tersimpan pada
+                RDBMS lokal SQLite di mesin yang sama.
+            </p>
+        </section>
+
+        <section id="statusBox" class="status-box"></section>
+
+        <div class="panel">
+            <!-- Panel Kiri: Auth -->
+            <section id="authPanel" class="card">
+                <div class="tabs">
+                    <button data-tab="login" class="tab-btn active">Login</button>
+                    <button data-tab="register" class="tab-btn">Register</button>
+                </div>
+
+                <!-- Login Form -->
+                <form id="loginForm" class="form">
+                    <h2>Login</h2>
+                    <label>Username
+                        <input type="text" name="username" required autocomplete="username">
+                    </label>
+                    <label>Password
+                        <input type="password" name="password" required autocomplete="current-password">
+                    </label>
+                    <button type="submit" class="btn">Login</button>
+                    <p class="form-msg" id="loginMsg"></p>
+                </form>
+
+                <!-- Register Form -->
+                <form id="registerForm" class="form hidden">
+                    <h2>Register Akun Baru</h2>
+                    <label>Username
+                        <input type="text" name="username" required>
+                    </label>
+                    <label>Nama Lengkap
+                        <input type="text" name="nama" required>
+                    </label>
+                    <label>No. Identitas (NIM)
+                        <input type="text" name="no_id" required>
+                    </label>
+                    <label>Password
+                        <input type="password" name="password" required minlength="6">
+                    </label>
+                    <button type="submit" class="btn">Daftar</button>
+                    <p class="form-msg" id="registerMsg"></p>
+                </form>
+            </section>
+
+            <!-- Panel Kanan: Setelah Login -->
+            <section id="appPanel" class="card hidden">
+                <div class="app-head">
+                    <h2>Selamat datang, <span id="greetName"></span>!</h2>
+                    <button id="logoutBtn" class="btn btn-secondary">Logout</button>
+                </div>
+
+                <!-- Submit Puisi -->
+                <form id="puisiForm" class="form">
+                    <h3>Submit Puisi</h3>
+                    <label>Judul
+                        <input type="text" name="judul" required>
+                    </label>
+                    <label>Tanggal Submit
+                        <input type="date" name="tgl_submit" required>
+                    </label>
+                    <label>Kategori
+                        <select name="kategori" required>
+                            <option value="">-- Pilih Kategori --</option>
+                            <option value="Cinta">Cinta</option>
+                            <option value="Alam">Alam</option>
+                            <option value="Kehidupan">Kehidupan</option>
+                            <option value="Galau">Galau</option>
+                            <option value="Motivasi">Motivasi</option>
+                            <option value="Lainnya">Lainnya</option>
+                        </select>
+                    </label>
+                    <label>Keyword
+                        <input type="text" name="keyword" required placeholder="pisahkan dengan koma">
+                    </label>
+                    <label>Isi Puisi
+                        <textarea name="isi" rows="6" required></textarea>
+                    </label>
+                    <button type="submit" class="btn">Submit Puisi</button>
+                    <p class="form-msg" id="puisiMsg"></p>
+                </form>
+
+                <!-- Daftar Puisi -->
+                <section id="listPanel">
+                    <h3>Daftar Puisi</h3>
+                    <p class="small">Amati tab Network: setiap permintaan mengirim cookie sesi
+                        (<code>puisi_session</code>) yang ditetapkan server lewat header Set-Cookie.</p>
+                    <div id="puisiList" class="puisi-list"></div>
+                </section>
+            </section>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>© 2026 Aplikasi Monolitik Stateful | Rayhan Haldi Hermawan - 24/545406/PA/23176</p>
+        </div>
+    </footer>
+
+    <script src="/static/js/script.js"></script>
+</body>
+</html>

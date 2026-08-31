@@ -1,0 +1,9 @@
+# Aplikasi Monolitik Stateful - Backend MURNI Python
+#
+# Tidak dibutuhkan framework/ORM. Backend memakai pustaka standar Python
+# (http.server, sqlite3, hashlib, json, dll.) sehingga TIDAK ada dependency
+# eksternal untuk di-install.
+#
+# File ini dipertahankan untuk dokumentasi & kompatibilitas tooling, namun
+# isinya kosong. Jalankan langsung dengan:
+#   python app.py
